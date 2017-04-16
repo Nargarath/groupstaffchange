@@ -79,7 +79,7 @@ function LothusZ.jobChangedGroup(ply , oldjob , newjob)
 	if(LothusZ.hasID(ply:SteamID()))then
 		if(LothusZ.staffType(ply:SteamID()) == "superadmin") then
 			if newjob == DONO then
-				RunConsoleCommand( "ulx","adduserid",ply:SteamID(),"superadmin" )
+				RunConsoleCommand( "ulx","removeuserid",ply:SteamID() )
 			else
 				LothusZ.specialGroupRemove(ply)
 			end
