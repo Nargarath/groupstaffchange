@@ -78,19 +78,19 @@ end
 function GSC.jobChangedGroup(ply , oldjob , newjob)
 	if(GSC.hasID(ply:SteamID()))then
 		if(GSC.staffType(ply:SteamID()) == "superadmin") then
-			if newjob == DONO then
+			if newjob == GSC.StaffJobName then
 				RunConsoleCommand( "ulx","removeuserid",ply:SteamID() )
 			else
 				GSC.specialGroupRemove(ply)
 			end
 		elseif GSC.staffType(ply:SteamID()) == "admin" then
-			if newjob == DONO then
+			if newjob == GSC.StaffJobName then
 				RunConsoleCommand( "ulx","adduserid",ply:SteamID(),"admin" )
 			else
 				GSC.specialGroupRemove(ply)
 			end	
 		elseif GSC.staffType(ply:SteamID()) == "moderator" then
-			if newjob == DONO then
+			if newjob == GSC.StaffJobName then
 				RunConsoleCommand( "ulx","adduserid",ply:SteamID(),"moderator" )
 			else
 				GSC.specialGroupRemove(ply)
