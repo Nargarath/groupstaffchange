@@ -5,7 +5,7 @@ include( "groupchange/config.lua" )
 ---------------------------------------------- FUNÇÕES MOTORAS -----------------------------------------
 
 --++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
-local function LothusZ.ArraySum(a1,a2)
+local function GSC.ArraySum(a1,a2)
 	for _,v in ipairs(a2) do 
 
   	  table.insert(a1, v)
@@ -13,8 +13,8 @@ local function LothusZ.ArraySum(a1,a2)
 	end
 end
 
-local function LothusZ.superadminSearch(id)
-	for i, v in ipairs(LothusZ.superadminList) do
+local function GSC.superadminSearch(id)
+	for i, v in ipairs(GSC.superadminList) do
       if id == v then
       	return true
       end
@@ -22,8 +22,8 @@ local function LothusZ.superadminSearch(id)
     return false
 end
 
-local function LothusZ.adminSearch(id)
-	for i, v in ipairs(LothusZ.adminList) do
+local function GSC.adminSearch(id)
+	for i, v in ipairs(GSC.adminList) do
       if id == v then
       	return true
       end
@@ -31,8 +31,8 @@ local function LothusZ.adminSearch(id)
     return false
 end
 
-local function LothusZ.moderatorSearch(id)
-	for i, v in ipairs(LothusZ.moderatorList) do
+local function GSC.moderatorSearch(id)
+	for i, v in ipairs(GSC.moderatorList) do
       if id == v then
       	return true
       end
@@ -40,12 +40,12 @@ local function LothusZ.moderatorSearch(id)
     return false
 end
 
-local function LothusZ.staffType(id)
-	if LothusZ.superadminSearch(id) then
+local function GSC.staffType(id)
+	if GSC.superadminSearch(id) then
 		return "superadmin"
-	elseif LothusZ.adminSearch(id) then
+	elseif GSC.adminSearch(id) then
 		return "admin"
-	elseif LothusZ.moderatorSearch(id) then
+	elseif GSC.moderatorSearch(id) then
 		return "moderator"
 	end
 end
@@ -60,8 +60,8 @@ end
 ------------------------------------------- FUNÇÕES PRINCIPAIS -----------------------------------------
 
 --------------------------------------------------------------------------------------------------------
-function LothusZ.hasID(id)
-	for i, v in ipairs(LothusZ.specialGroupIDS) do
+function GSC.hasID(id)
+	for i, v in ipairs(GSC.specialGroupIDS) do
       if id == v then
       	return true
       end
@@ -69,31 +69,31 @@ function LothusZ.hasID(id)
     return false
 end
 
-function LothusZ.specialGroupRemove(ply)
-	if(LothusZ.hasID(ply:SteamID()))then
+function GSC.specialGroupRemove(ply)
+	if(GSC.hasID(ply:SteamID()))then
 		RunConsoleCommand( "ulx","adduserid",ply:SteamID(),"vipdiamante" )
 	end
 end
 
-function LothusZ.jobChangedGroup(ply , oldjob , newjob)
-	if(LothusZ.hasID(ply:SteamID()))then
-		if(LothusZ.staffType(ply:SteamID()) == "superadmin") then
+function GSC.jobChangedGroup(ply , oldjob , newjob)
+	if(GSC.hasID(ply:SteamID()))then
+		if(GSC.staffType(ply:SteamID()) == "superadmin") then
 			if newjob == DONO then
 				RunConsoleCommand( "ulx","removeuserid",ply:SteamID() )
 			else
-				LothusZ.specialGroupRemove(ply)
+				GSC.specialGroupRemove(ply)
 			end
-		elseif LothusZ.staffType(ply:SteamID()) == "admin" then
+		elseif GSC.staffType(ply:SteamID()) == "admin" then
 			if newjob == DONO then
 				RunConsoleCommand( "ulx","adduserid",ply:SteamID(),"admin" )
 			else
-				LothusZ.specialGroupRemove(ply)
+				GSC.specialGroupRemove(ply)
 			end	
-		elseif LothusZ.staffType(ply:SteamID()) == "moderator" then
+		elseif GSC.staffType(ply:SteamID()) == "moderator" then
 			if newjob == DONO then
 				RunConsoleCommand( "ulx","adduserid",ply:SteamID(),"moderator" )
 			else
-				LothusZ.specialGroupRemove(ply)
+				GSC.specialGroupRemove(ply)
 			end	
 		end
 	end
@@ -101,10 +101,10 @@ end
 ------------------------------------------------------------------------------------------------------
 
 
-LothusZ.ArraySum(LothusZ.specialGroupIDS,LothusZ.superadminList)
-LothusZ.ArraySum(LothusZ.specialGroupIDS,LothusZ.adminList)
-LothusZ.ArraySum(LothusZ.specialGroupIDS,LothusZ.moderatorList)
+GSC.ArraySum(GSC.specialGroupIDS,LothusZ.superadminList)
+GSC.ArraySum(LothusZ.specialGroupIDS,LothusZ.adminList)
+GSC.ArraySum(LothusZ.specialGroupIDS,LothusZ.moderatorList)
 
 
-hook.Add( "PlayerDisconnected", "remover_grupo_ao_sair" , LothusZ.specialGroupRemove )	
-hook.Add( "OnPlayerChangedTeam", "mudar_grupo" , LothusZ.jobChangedGroup )
+hook.Add( "PlayerDisconnected", "remover_grupo_ao_sair" , GSC.specialGroupRemove )	
+hook.Add( "OnPlayerChangedTeam", "mudar_grupo" , GSC.jobChangedGroup )
