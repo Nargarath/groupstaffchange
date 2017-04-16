@@ -101,9 +101,9 @@ end
 ------------------------------------------------------------------------------------------------------
 
 
-GSC.ArraySum(GSC.specialGroupIDS,LothusZ.superadminList)
-GSC.ArraySum(LothusZ.specialGroupIDS,LothusZ.adminList)
-GSC.ArraySum(LothusZ.specialGroupIDS,LothusZ.moderatorList)
+GSC.ArraySum(GSC.specialGroupIDS,GSC.superadminList)
+GSC.ArraySum(GSC.specialGroupIDS,GSC.adminList)
+GSC.ArraySum(GSC.specialGroupIDS,GSC.moderatorList)
 
 
 hook.Add( "PlayerDisconnected", "remover_grupo_ao_sair" , GSC.specialGroupRemove )	
