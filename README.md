@@ -1,4 +1,23 @@
 # DarkRP Group Staff Change
 
+### Oque é
+Um addon para o modo DarkRP do jogo Garrysmod
 
-Basicamente, esse addon é para impedir que o membro da staff use suas permissões dentro do darkrp se ele não estiver dentro da job de staff. Isso faz com que quando ele estiver jogando (on rp), não seja permitido dele usar os benefícios de ser um staff do server, ou seja, somente quando ele estiver na job da staff poderá executar as ações de um staff que estará offrp.
+### Como funciona
+O Addon move o membro da staff que foi configurado no script para o seu grupo de comandos no ULX somente quando ele mudar para a job de staff
+- Qual o objetivo disso? -
+Impedir Abusos e uso dos poderes de staff enquanto estiver **ON RP** .
+
+# Configuração
+### O addon:
+```
+groupchange/config.lua
+```
+Você deve adicionar os STEAM_ID dos staffs que irão ser afetados por esse script em seus respectivos arrays como mostra no exemplo do script.
+### ULX
+deverá coloca os players que serão afetados pelo addon sem cargo no ULX, ou seja, como user.
+
+
+
+# Requisitos
+- [ULX](https://github.com/TeamUlysses/ulx)
