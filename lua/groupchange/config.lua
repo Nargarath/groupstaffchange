@@ -11,5 +11,3 @@ GSC.moderatorList = {"STEAM_0:1:XXXXXXXXX"}
 
 --não modificar essa array
 GSC.specialGroupIDS = {"STEAM_0:1:XXXXXXXXX"}
-
-GSC.StaffJobName = DONO
