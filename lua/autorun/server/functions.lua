@@ -13,7 +13,7 @@ local function GSC.ArraySum(a1,a2)
 	end
 end
 
-local function GSC.superadminSearch(id)
+function GSC.superadminSearch(id)
 	for i, v in ipairs(GSC.superadminList) do
       if id == v then
       	return true
@@ -22,7 +22,7 @@ local function GSC.superadminSearch(id)
     return false
 end
 
-local function GSC.adminSearch(id)
+function GSC.adminSearch(id)
 	for i, v in ipairs(GSC.adminList) do
       if id == v then
       	return true
@@ -31,7 +31,7 @@ local function GSC.adminSearch(id)
     return false
 end
 
-local function GSC.moderatorSearch(id)
+function GSC.moderatorSearch(id)
 	for i, v in ipairs(GSC.moderatorList) do
       if id == v then
       	return true
@@ -40,7 +40,7 @@ local function GSC.moderatorSearch(id)
     return false
 end
 
-local function GSC.staffType(id)
+function GSC.staffType(id)
 	if GSC.superadminSearch(id) then
 		return "superadmin"
 	elseif GSC.adminSearch(id) then
@@ -71,26 +71,26 @@ end
 
 function GSC.specialGroupRemove(ply)
 	if(GSC.hasID(ply:SteamID()))then
-		RunConsoleCommand( "ulx","adduserid",ply:SteamID(),"vipdiamante" )
+		RunConsoleCommand( "ulx","removeuserid",ply:SteamID() )
 	end
 end
 
 function GSC.jobChangedGroup(ply , oldjob , newjob)
 	if(GSC.hasID(ply:SteamID()))then
 		if(GSC.staffType(ply:SteamID()) == "superadmin") then
-			if newjob == GSC.StaffJobName then
-				RunConsoleCommand( "ulx","removeuserid",ply:SteamID() )
+			if newjob == DONO then
+				RunConsoleCommand( "ulx","adduserid",ply:SteamID(),"superadmin" )
 			else
 				GSC.specialGroupRemove(ply)
 			end
 		elseif GSC.staffType(ply:SteamID()) == "admin" then
-			if newjob == GSC.StaffJobName then
+			if newjob == DONO then
 				RunConsoleCommand( "ulx","adduserid",ply:SteamID(),"admin" )
 			else
 				GSC.specialGroupRemove(ply)
 			end	
 		elseif GSC.staffType(ply:SteamID()) == "moderator" then
-			if newjob == GSC.StaffJobName then
+			if newjob == DONO then
 				RunConsoleCommand( "ulx","adduserid",ply:SteamID(),"moderator" )
 			else
 				GSC.specialGroupRemove(ply)
